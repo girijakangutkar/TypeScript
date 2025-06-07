@@ -1,0 +1,144 @@
+/* main part */
+.allDiv {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  margin: 30px auto;
+  width: 100%;
+  justify-content: space-between;
+  /* border: 1px solid black; */
+}
+
+.col1 {
+  width: 30%;
+}
+
+.col2 {
+  width: 70%;
+}
+
+/* form part */
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-self: left;
+  width: 100%;
+  align-self: center;
+  text-align: left;
+  margin: 5% auto;
+  /* border: 1px solid black; */
+}
+
+.form button,
+.form input,
+.form select {
+  border: 1px solid #ccc;
+}
+
+.form input,
+.form label,
+.form select {
+  align-self: flex-start;
+  text-align: left;
+  width: 90%;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.form select {
+  width: 95%;
+}
+
+.form button {
+  align-self: flex-start;
+  text-align: center;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  border: 1px solid #ccc;
+  background-color: rgb(40, 40, 211);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.form label {
+  font-weight: 700;
+}
+/* filter unit part */
+.filterUnit {
+  display: flex;
+  justify-self: center;
+  width: 95%;
+  margin: 10px;
+}
+
+.filterUnit select {
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+/* task list part */
+.taskList {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* align-self: center; */
+  justify-self: center;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+  text-align: center;
+}
+
+.lowTag {
+  background-color: rgb(106, 142, 35);
+  padding: 2px;
+  border-radius: 5px;
+  color: white;
+}
+
+.highTag {
+  background-color: rgb(223, 45, 45);
+  padding: 2px;
+  border-radius: 5px;
+  color: white;
+}
+
+.medTag {
+  background-color: rgb(224, 146, 1);
+  padding: 2px;
+  border-radius: 5px;
+  color: white;
+}
+
+input[type="checkbox"]:checked {
+  color: green;
+  background-color: green;
+}
+
+@media screen and (max-width: 780px) {
+  .allDiv {
+    flex-direction: column;
+  }
+
+  .col1,
+  .col2 {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .taskList {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .taskList {
+    margin: 10px;
+  }
+}
