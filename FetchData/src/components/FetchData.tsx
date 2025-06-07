@@ -22,15 +22,17 @@ const FetchData = () => {
   }
 
   return (
-    <div>
+    <div className="userDiv">
       {data.map((user) => (
-        <div key={user.username}>
-          <p>{user.username}</p>
-          <p>{user.email}</p>
+        <div key={user.username} className="userData">
           <p>
-            {user.address.street}, {user.address.city}, {user.address.zipcode}
+            <h1>{user.username}</h1>
+            <p style={{ color: "gray" }}>{user.email}</p>
           </p>
-          <br />
+          <b style={{ color: "#f7f7f7" }}>Address:</b>
+          <p>
+            {user.address.street}, {user.address.city}, {user.address.zipcode}.
+          </p>
         </div>
       ))}
     </div>

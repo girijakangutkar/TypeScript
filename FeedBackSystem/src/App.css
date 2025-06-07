@@ -1,0 +1,146 @@
+.navbar {
+  position: fixed;
+  width: 100%;
+  /* margin: 0 1px 0 1px; */
+  padding: 10px;
+  background-color: #51ae04;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  justify-self: center;
+  justify-items: center;
+  align-items: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: rgb(13, 42, 19);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.Active {
+  background-color: rgb(194, 219, 163);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+/* Aromatic bar */
+.feedbackInfo {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  width: 100%;
+}
+
+.formTable {
+  width: 100%;
+  max-width: 90%;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+th {
+  background-color: #51ae04;
+  color: #333333;
+  padding: 10px;
+  border: 1px solid #7ada20;
+}
+
+tr:nth-child(even) {
+  background-color: #d9ffb3;
+}
+
+tr:hover {
+  background-color: #6a9e3695;
+  color: #131313;
+}
+
+/* user feedback  */
+.userDetails {
+  display: flex;
+  justify-content: center;
+  /* margin: 10px auto; */
+  margin-top: 5%;
+  width: 100%;
+}
+
+/* User feedback form */
+.feedbackForm {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  flex-direction: row;
+  width: 100%;
+  /* border: 1px solid black; */
+}
+
+.col1 {
+  /* border: 1px solid black; */
+  width: 50%;
+  margin: 10px;
+  padding: 4px;
+}
+
+.col2 {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  /* border: 1px solid black; */
+}
+
+.feedbackForm label {
+  font-weight: 600;
+  padding: 10px;
+  padding-left: 0;
+  color: #2c4a02;
+  font-size: 16px;
+  margin: 5px;
+  margin-left: 0;
+  width: 90%;
+}
+
+.feedbackForm select,
+.feedbackForm input,
+.feedbackForm textarea {
+  margin: 8px;
+  margin-left: 0;
+  border-radius: 10px;
+  border: 2px solid #c9e1a8;
+  box-shadow: 2px 5px 10px 1px #c9e1a8;
+  padding: 8px;
+  width: 90%;
+}
+
+.feedbackForm textarea {
+  width: 90%;
+  height: 200px;
+  resize: none;
+}
+
+.subBtn {
+  margin: 10px;
+  margin-left: 0;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  background-color: #3c7704;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  width: 30%;
+  padding: 10px;
+}
+
+.signUpDiv,
+.loginDiv {
+  margin-top: 20%;
+}

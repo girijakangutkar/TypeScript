@@ -28,7 +28,7 @@ const TaskList = () => {
   >([]);
   const [filterTask, setFilterTask] = useState<string>("");
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setTaskList([...taskList, taskForm]);
     setTaskForm({
