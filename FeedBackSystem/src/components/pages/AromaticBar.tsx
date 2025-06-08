@@ -1,17 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
+import StarRating from "./StarRating";
 
 const AromaticBar = () => {
-  const [customerSays, setCustomerSays] = useState<{
-    id: string;
-    name: string;
-    phoneNumber: string;
-    email: string;
-    message: string;
-    foodRate: number;
-    serviceRate: number;
-    cultureRate: number;
-  }>({
+  const [customerSays, setCustomerSays] = useState({
     id: Date.now().toString(),
     name: "",
     phoneNumber: "",
@@ -25,26 +17,20 @@ const AromaticBar = () => {
   const URI = import.meta.env.VITE_URI;
 
   function handleChange(
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) {
     setCustomerSays((prev) => ({
       ...prev,
-      [e.target.name]:
-        e.target.name === "phoneNumber"
-          ? e.target.value // Keep as string, don't convert to number
-          : e.target.name.includes("Rate")
-          ? Number(e.target.value) // Convert rating values to numbers
-          : e.target.value,
+      [e.target.name]: e.target.name.includes("Rate")
+        ? Number(e.target.value)
+        : e.target.value,
     }));
   }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     try {
-      const response = await axios.post(`${URI}`, customerSays);
-      console.log(response.data);
+      await axios.post(`${URI}`, customerSays);
       setCustomerSays({
         id: Date.now().toString(),
         name: "",
@@ -56,104 +42,87 @@ const AromaticBar = () => {
         cultureRate: 0,
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
   return (
-    <div className="userDetails">
-      <form onSubmit={handleSubmit}>
-        <div className="feedbackForm">
-          <div className="col1">
-            <label htmlFor="name">Name:</label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              value={customerSays.name}
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="phoneNumber">Phone Number:</label>
-            <input
-              type="tel"
-              name="phoneNumber"
-              id="phoneNumber"
-              value={customerSays.phoneNumber}
-              onChange={handleChange}
-              minLength={10}
-              maxLength={10}
-              required
-            />
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={customerSays.email}
-              onChange={handleChange}
-              required
-            />
-            <label htmlFor="message">Dining Experience:</label>
-            <textarea
-              name="message"
-              id="message"
-              value={customerSays.message}
-              onChange={handleChange}
-            />
-            <button type="submit" className="subBtn">
-              Submit
-            </button>
-          </div>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-6 rounded-lg shadow-lg max-w-lg w-full"
+      >
+        <h2 className="text-2xl font-bold mb-4 text-center">Feedback Form</h2>
 
-          <div className="col2">
-            <label htmlFor="foodRate">Food rating:</label>
-            <select
-              name="foodRate"
-              id="foodRate"
-              value={customerSays.foodRate}
-              onChange={handleChange}
-              required
-            >
-              <option value={0}>Select rating</option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-            </select>
-            <label htmlFor="serviceRate">Service rating:</label>
-            <select
-              name="serviceRate"
-              id="serviceRate"
-              value={customerSays.serviceRate}
-              onChange={handleChange}
-              required
-            >
-              <option value={0}>Select rating</option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-            </select>
-            <label htmlFor="cultureRate">Culture rating:</label>
-            <select
-              name="cultureRate"
-              id="cultureRate"
-              value={customerSays.cultureRate}
-              onChange={handleChange}
-              required
-            >
-              <option value={0}>Select rating</option>
-              <option value={1}>1</option>
-              <option value={2}>2</option>
-              <option value={3}>3</option>
-              <option value={4}>4</option>
-              <option value={5}>5</option>
-            </select>
-          </div>
+        <div className="grid gap-4">
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={customerSays.name}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+            required
+          />
+          <input
+            type="tel"
+            name="phoneNumber"
+            placeholder="Phone Number"
+            value={customerSays.phoneNumber}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={customerSays.email}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+            required
+          />
+          <textarea
+            name="message"
+            placeholder="Your Dining Experience..."
+            value={customerSays.message}
+            onChange={handleChange}
+            className="w-full border p-2 rounded resize-none"
+          />
         </div>
+
+        <div className="flex mt-4 justify-between self-center items-center content-center text-left m-5">
+          <label className="block">Food Rating</label>
+          <StarRating
+            rating={customerSays.foodRate}
+            setRating={(value) =>
+              setCustomerSays({ ...customerSays, foodRate: value })
+            }
+          />
+          <label className="block mt-2">Service Rating</label>
+          <StarRating
+            rating={customerSays.serviceRate}
+            setRating={(value) =>
+              setCustomerSays({ ...customerSays, serviceRate: value })
+            }
+          />
+        </div>
+        <div className="flex mt-4 justify-start self-center items-center content-center text-left m-5">
+          <label className="block mt-2 mr-3">Culture Rating</label>
+          <StarRating
+            rating={customerSays.cultureRate}
+            setRating={(value) =>
+              setCustomerSays({ ...customerSays, cultureRate: value })
+            }
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 rounded mt-4 hover:bg-blue-600"
+        >
+          Submit Feedback
+        </button>
       </form>
     </div>
   );

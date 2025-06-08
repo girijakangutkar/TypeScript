@@ -30,16 +30,20 @@
 .feedbackInfo {
   display: flex;
   justify-content: center;
+  width: 90%;
+  max-width: 90%;
+  margin: 10px auto;
   margin-top: 5%;
-  width: 100%;
+  overflow: scroll;
 }
 
 .formTable {
-  width: 100%;
-  max-width: 90%;
+  width: auto;
+  max-width: 100%;
   border: 1px solid #ccc;
   border-collapse: collapse;
-  margin: 0;
+  overflow: auto;
+  /* margin: 10%; */
 }
 
 th,
