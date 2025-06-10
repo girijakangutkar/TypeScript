@@ -1,4 +1,5 @@
 import FeedBackForm from "./components/FeedBackForm";
+import "./App.css";
 
 const App = () => {
   return (
